@@ -9,11 +9,11 @@ const Cart = sequelize.define("cart", {
         allowNull: false,
         primaryKey: true,
     },
-    itemName: {
+    item_name: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    itemPrice: {
+    item_price: {
         type: Sequelize.DOUBLE,
         allowNull: false,
     },

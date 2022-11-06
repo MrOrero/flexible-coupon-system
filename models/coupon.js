@@ -17,7 +17,11 @@ const Coupon = sequelize.define("coupon", {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    discount: {
+    discount_type: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
+    discount_amount: {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
