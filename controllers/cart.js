@@ -19,8 +19,10 @@ exports.getCart = async (req, res, next) => {
             message: "Successful",
             data: formatedProducts,
         });
+        return;
     } catch (error) {
-        return next(format500error(error));
+        next(format500error(error));
+        return error;
     }
 };
 
@@ -41,13 +43,13 @@ exports.addtoCart = async (req, res, next) => {
         });
         const products = await Cart.findAll({ attributes: ["item_name", "item_price"] });
         const formatedProducts = formatCartItems(products);
-
         res.status(201).json({
             message: `${itemName} added succesfully`,
             data: formatedProducts,
         });
     } catch (error) {
-        return next(format500error(error));
+        next(format500error(error));
+        return error;
     }
 };
 
@@ -67,11 +69,13 @@ exports.deleteCartItem = async (req, res, next) => {
 
         const products = await Cart.findAll({ attributes: ["item_name", "item_price"] });
         const formatedProducts = formatCartItems(products);
-        res.status(201).json({
+        res.status(200).json({
             message: `${itemName} deleted succesfully`,
             data: formatedProducts,
         });
+        return;
     } catch (error) {
-        return next(format500error(error));
+        next(format500error(error));
+        return error;
     }
 };
