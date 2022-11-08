@@ -7,8 +7,7 @@ const {
     formatCustomError,
     formatValidationError,
 } = require("../util/format-error");
-const formatQuery = require("../util/format-query");
-const { calculateTotalPrice, formatCartItems } = require("../util/format-cart");
+const { calculateTotalPrice, formatCartItems, formatQuery } = require("../util/format");
 
 exports.getCoupon = async (req, res, next) => {
     try {

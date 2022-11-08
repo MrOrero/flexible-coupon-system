@@ -67,13 +67,20 @@ describe("Cart controller - addtoCart", function () {
         });
     });
 
-    it("should return a 201 status code if item does not exist already and is created", function (done) {
+    it("should return a 201 status code if item does not exist already and is created successfully", function (done) {
         sinon.stub(Cart, "findOne");
         sinon.stub(Cart, "create");
         sinon.stub(Cart, "findAll");
         Cart.findOne.returns(null);
         Cart.create.resolves();
         Cart.findAll.returns(["book", "john"]);
+
+        const req = {
+            body: {
+                itemName: "paper",
+                itemPrice: "5",
+            },
+        };
 
         const res = {
             statusCode: 500,
@@ -86,14 +93,14 @@ describe("Cart controller - addtoCart", function () {
                 this.userStatus = data.status;
             },
         };
-        getCart({}, res, () => {}).then(result => {
-            expect(res.statusCode).to.be.equal(200);
+        addtoCart(req, res, () => {}).then(result => {
+            expect(res.statusCode).to.be.equal(201);
             done();
         });
     });
 });
 
-describe("Cart controller - addtoCart", function () {
+describe("Cart controller - deleteCartItem", function () {
     this.afterEach(function () {
         Cart.findOne.restore();
     });
@@ -127,6 +134,12 @@ describe("Cart controller - addtoCart", function () {
         Cart.destroy.resolves();
         Cart.findAll.returns(["book", "john"]);
 
+        const req = {
+            params: {
+                itemName: "paper",
+            },
+        };
+
         const res = {
             statusCode: 500,
             userStatus: null,
@@ -138,7 +151,7 @@ describe("Cart controller - addtoCart", function () {
                 this.userStatus = data.status;
             },
         };
-        getCart({}, res, () => {}).then(result => {
+        deleteCartItem(req, res, () => {}).then(result => {
             expect(res.statusCode).to.be.equal(200);
             done();
         });

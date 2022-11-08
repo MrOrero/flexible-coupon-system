@@ -6,7 +6,7 @@ const {
     formatCustomError,
     formatValidationError,
 } = require("../util/format-error");
-const { formatCartItems } = require("../util/format-cart");
+const { formatCartItems } = require("../util/format");
 
 exports.getCart = async (req, res, next) => {
     try {
