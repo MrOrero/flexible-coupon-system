@@ -9,6 +9,10 @@ const Coupon = sequelize.define("coupon", {
         allowNull: false,
         primaryKey: true,
     },
+    coupon_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
     total_price_limit: {
         type: Sequelize.DOUBLE,
         allowNull: false,
@@ -18,7 +22,7 @@ const Coupon = sequelize.define("coupon", {
         allowNull: false,
     },
     discount_type: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     discount_amount: {

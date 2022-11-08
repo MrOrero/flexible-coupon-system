@@ -7,3 +7,11 @@ exports.formatCartItems = products => {
     });
     return [...formatedProducts, { total_price }];
 };
+
+exports.calculateTotalPrice = cart => {
+    let total_price = 0;
+    cart.forEach(item => {
+        total_price += item.item_price;
+    });
+    return total_price;
+};
