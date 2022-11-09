@@ -279,7 +279,7 @@ exports.useCoupon = async (req, res, next) => {
                 res.status(201).json({
                     message: `${couponName.toUpperCase()} applied succesfully, you have a $${
                         coupon.discount_amount
-                    } discount and a ${coupon.discount_amount} which amounts to $${perc}`,
+                    } discount and a %${coupon.discount_amount} discount which amounts to $${perc}`,
                     data: newCart,
                     discount: {
                         total_adjusted_price_fixed: fixed,
